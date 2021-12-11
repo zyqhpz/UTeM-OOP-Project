@@ -1,6 +1,5 @@
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 import style.RoundButton;
@@ -8,8 +7,9 @@ import style.RoundButton;
 public class Home extends BasicButtonUI {
 
     private JFrame frame;
-    private JPanel panel;
-    private JButton buttonReserve, buttonReport, buttonLogout;
+    private JPanel panel, panelBtn;
+    private JButton button;
+    private String[] buttonLabels = { "Reserve", "Report", "Logout" };
     private JLabel mainTitle;
     // private Font titleFont;
 
@@ -25,44 +25,34 @@ public class Home extends BasicButtonUI {
         frame.setVisible(true);
 
         panel = new JPanel();
-        panel.setLayout(null);
-        frame.add(panel);
+        panel.setLayout(new BorderLayout());
+        panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createEmptyBorder(50, 10, 10, 10));
+
+        panelBtn = new JPanel();
+        panelBtn.setLayout(new GridLayout(3, 1, 60, 60));
+        panelBtn.setBackground(Color.WHITE);
+        panelBtn.setBorder(BorderFactory.createEmptyBorder(150, 100, 150, 100));
 
         mainTitle = new JLabel("Sport Centre Management System", JLabel.CENTER);
-        mainTitle.setFont(new Font("Serif", Font.BOLD, 25));
+        mainTitle.setFont(new Font("Serif", Font.BOLD, 35));
         mainTitle.setBounds(0, -300, 900, 800);
         mainTitle.setHorizontalAlignment(JLabel.CENTER);
         mainTitle.setVerticalAlignment(JLabel.CENTER);
         panel.add(mainTitle);
 
-        JLabel reserveCourt = new JLabel("Reserve Court", JLabel.CENTER);
-        // button = new JButton("Click Me");
-        buttonReserve = new JButton("Reserve Court");
-        buttonReserve.setBounds(100, 400, 300, 100);
-        // create rounded border button
-        Border empty = BorderFactory.createEmptyBorder();
-        Border margin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-        Border compound = BorderFactory.createCompoundBorder(empty, margin);
-        buttonReserve.setBorder(compound);
-        // button.setUI(new Home());
-        // add BLUE as color for button and low the opacity
-        // button.setBorder(new RoundButton(50));
-        buttonReserve.setBackground(new Color(0, 0, 255, 100));
-        // button.setColor(new Color(255, 255, 255, 80));
-        // button.setBackground(new Color(0, 0, 255, 100));
-        panel.add(buttonReserve);
+        for (String label : buttonLabels) {
+            button = new JButton(label);
+            button.setFont(new Font("Sans Serif", Font.BOLD, 20));
+            button.setBounds(0, 0, 100, 70);
+            button.setBackground(Color.orange);
+            button.setForeground(Color.BLACK);
+            button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            panelBtn.add(button);
+        }
 
-        buttonReport = new JButton("Graph");
-        buttonReport.setBounds(500, 400, 300, 100);
-        buttonReport.setBorder(compound);
-        buttonReport.setBackground(new Color(0, 0, 255, 100));
-        panel.add(buttonReport);
-
-        buttonLogout = new JButton("Logout");
-        buttonLogout.setBounds(300, 600, 300, 100);
-        buttonLogout.setBorder(compound);
-        buttonLogout.setBackground(new Color(0, 0, 255, 100));
-        panel.add(buttonLogout);
+        frame.add(panel, BorderLayout.NORTH);
+        frame.add(panelBtn, BorderLayout.CENTER);
     }
 
     public static void main(String[] args) {
