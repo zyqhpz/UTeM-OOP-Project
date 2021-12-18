@@ -1,10 +1,16 @@
+package view;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 
-import style.RoundButton;
+import org.w3c.dom.events.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Home extends BasicButtonUI {
+//import style.RoundButton;
+
+public class MainMenu extends BasicButtonUI {
 
     private JFrame frame;
     private JPanel panel, panelBtn;
@@ -13,7 +19,7 @@ public class Home extends BasicButtonUI {
     private JLabel mainTitle;
     // private Font titleFont;
 
-    public Home() {
+    public MainMenu() {
         init();
         frame.setVisible(true);
     }
@@ -48,6 +54,26 @@ public class Home extends BasicButtonUI {
             button.setBackground(Color.orange);
             button.setForeground(Color.BLACK);
             button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            
+            button.addActionListener(new ActionListener() {
+            	public void actionPerformed(ActionEvent e) {
+	            	if (label == "Logout") {
+	            		Login loginFrame = new Login();
+	            		loginFrame.setVisible(true);
+	            		frame.dispose();
+	            	} else if (label == "Report") {
+	            		Report rFrame = new Report("Report");
+	            		rFrame.setVisible(true);	
+	            		frame.dispose();
+	            	}
+	            	else {
+	            		Courts court =  new Courts();
+	            		court.setVisible(true);
+	            		frame.dispose();
+	            	}
+            	}
+            });
+            
             panelBtn.add(button);
         }
 
@@ -56,6 +82,20 @@ public class Home extends BasicButtonUI {
     }
 
     public static void main(String[] args) {
-        new Home();
+    	EventQueue.invokeLater(new Runnable() {
+    		public void run() {
+    			try {
+    				MainMenu menuFrame = new MainMenu();
+    				menuFrame.setVisible(true);
+    			}
+    			catch (Exception e) {
+    				e.printStackTrace();
+    			}
+    		}
+    	});
     }
+
+	protected void setVisible(boolean visible) {
+		this.frame.setVisible(true);
+	}
 }
