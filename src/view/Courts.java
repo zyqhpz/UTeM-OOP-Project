@@ -46,6 +46,7 @@ public class Courts extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnBasketball = new JButton("Basketball");
+		btnBasketball.setBounds(80, 325, 211, 111);
 		btnBasketball.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		btnBasketball.setBackground(colour);
 		btnBasketball.addActionListener(new ActionListener() {
@@ -57,6 +58,7 @@ public class Courts extends JFrame {
 		});
 		
 		JButton btnFutsal = new JButton("Futsal");
+		btnFutsal.setBounds(336, 325, 211, 111);
 		btnFutsal.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		btnFutsal.setBackground(colour);
 		btnFutsal.addActionListener(new ActionListener() {
@@ -68,6 +70,7 @@ public class Courts extends JFrame {
 		});
 		
 		JButton btnBadminton = new JButton("Badminton");
+		btnBadminton.setBounds(592, 325, 211, 111);
 		btnBadminton.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		btnBadminton.setBackground(colour);
 		btnBadminton.addActionListener(new ActionListener() {
@@ -78,7 +81,21 @@ public class Courts extends JFrame {
 			}
 		});
 		
-		contentPane.setLayout(new GridLayout(1, 3, 45, 45));
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainMenu frame = new MainMenu();
+				frame.setVisible(true);
+				dispose();
+			}
+		});
+		btnBack.setBackground(Color.GRAY);
+		btnBack.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnBack.setBounds(23, 23, 85, 21);
+		contentPane.add(btnBack);
+		
+		
+		contentPane.setLayout(null);
 		contentPane.add(btnBasketball);
 		contentPane.add(btnFutsal);
 		contentPane.add(btnBadminton);
