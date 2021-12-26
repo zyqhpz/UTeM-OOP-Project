@@ -3,12 +3,12 @@ package view;
 import javax.swing.JPanel;
 import javax.swing.*;
 
-//import java.org.jfree.chart.ChartFactory;
-import org.jfree.chart.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
-import org.jfree.chart.ui.ApplicationFrame;
+// import org.jfree.ui.ApplicationFrame;
 // import org.jfree.ui.RefineryUtilities;
 
 public class Report extends org.jfree.chart.ui.ApplicationFrame {

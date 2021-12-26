@@ -62,8 +62,10 @@ public class MainMenu extends BasicButtonUI {
 	            		loginFrame.setVisible(true);
 	            		frame.dispose();
 	            	} else if (label == "Report") {
-	            		Report rFrame = new Report("Report");
-	            		//rFrame.setVisible(true);	
+//	            		Report rFrame = new Report("Report");
+	            		ReportType frameReport = new ReportType();
+//	            		rFrame.setVisible(true);	
+	            		frameReport.setVisible(true);
 	            		frame.dispose();
 	            	}
 	            	else {

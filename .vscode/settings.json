@@ -1,6 +1,11 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "e:\\Programming\\java\\jfreechart-1.5.2\\jfreechart-1.5.2.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "e:\\Programming\\java\\jfreechart-1.5.2.jar"
+        ],
+        "exclude": [
+            "e:\\Programming\\java\\jgrapht-1.5.1\\jgrapht-1.5.1\\lib\\jgrapht-core-1.5.1.jar"
+        ]
+    }
 }
