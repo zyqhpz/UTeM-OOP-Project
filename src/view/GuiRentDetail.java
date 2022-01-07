@@ -11,6 +11,10 @@ import javax.swing.BoxLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import controller.CourtController;
+import model.Court;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
@@ -19,6 +23,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class GuiRentDetail extends JFrame {
@@ -33,20 +38,25 @@ public class GuiRentDetail extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				/*
 				try {
 					GuiRentDetail frame = new GuiRentDetail();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				*/
 			}
 		});
 	}
 
+	
 	/**
 	 * Create the frame.
 	 */
-	public GuiRentDetail() {
+	public GuiRentDetail() {}
+	
+	public GuiRentDetail(Court court) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 801);
 		contentPane = new JPanel();
@@ -62,6 +72,9 @@ public class GuiRentDetail extends JFrame {
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Courts frame = new Courts();
+				frame.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -80,7 +93,7 @@ public class GuiRentDetail extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("Payment: ");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
-		JLabel lblNewLabel_2_1 = new JLabel("A1");
+		JLabel lblNewLabel_2_1 = new JLabel(court.getId());
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
 		JLabel lblNewLabel_2_1_1_1 = new JLabel("duration x rate/hour = RM");
@@ -95,6 +108,16 @@ public class GuiRentDetail extends JFrame {
 		JButton btnNewButton_1_1 = new JButton("Confirm");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CourtController cc = new CourtController();
+				try {
+					cc.setStatus("1", court);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
