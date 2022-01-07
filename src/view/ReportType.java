@@ -158,6 +158,9 @@ public class ReportType extends JFrame {
 		btnWeeklyReserve.setFont(new Font("Verdana", Font.PLAIN, 22));
 		btnWeeklyReserve.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ReportBarChart frame = new ReportBarChart("Weekly Reservation", "Week");
+				frame.isVisible();
+				dispose();
 			}
 		});
 		
