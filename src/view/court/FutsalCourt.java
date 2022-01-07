@@ -1,11 +1,10 @@
 package view.court;
 import view.Courts;
+import view.GuiRentDetail;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -14,9 +13,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import controller.CourtController;
+import model.Court;
 
 public class FutsalCourt extends JFrame {
 
@@ -57,39 +55,21 @@ public class FutsalCourt extends JFrame {
 		btnF1.setBounds(80, 80, 212, 603);
 		btnF1.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		CourtController ccf1 = new CourtController();
+		Court courtf1 = new Court();
+		courtf1.setId("F1");
 		int status = -1;
-		status = ccf1.checkStatus("F1");
+		status = ccf1.checkStatus(courtf1);
 		if(status == 1) {
 			btnF1.setBackground(Color.RED);
-			btnF1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-						btnF1.setBackground(colour);
-						try {
-							ccf1.setStatus("0", "F1");
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				});
 		}
 		else if(status == 0){
 			btnF1.setBackground(colour);
 			btnF1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 						btnF1.setBackground(highlight);
-						try {
-							ccf1.setStatus("1", "F1");
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						GuiRentDetail frame = new GuiRentDetail(courtf1);
+						frame.setVisible(true);
+						dispose();
 					}
 				});
 		}
@@ -98,39 +78,21 @@ public class FutsalCourt extends JFrame {
 		btnF2.setBounds(337, 80, 212, 603);
 		btnF2.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		CourtController ccf2 = new CourtController();
+		Court courtf2 = new Court();
+		courtf2.setId("F2");
 		int status2 = -1;
-		status2 = ccf2.checkStatus("F2");
+		status2 = ccf2.checkStatus(courtf2);
 		if(status2 == 1) {
 			btnF2.setBackground(Color.RED);
-			btnF2.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-						btnF2.setBackground(colour);
-						try {
-							ccf2.setStatus("0", "F2");
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				});
 		}
 		else if(status2 == 0){
 			btnF2.setBackground(colour);
 			btnF2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 						btnF2.setBackground(highlight);
-						try {
-							ccf2.setStatus("1", "F2");
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						GuiRentDetail frame = new GuiRentDetail(courtf2);
+						frame.setVisible(true);
+						dispose();
 					}
 				});
 		}
@@ -139,47 +101,24 @@ public class FutsalCourt extends JFrame {
 		btnF3.setBounds(594, 80, 212, 603);
 		btnF3.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		CourtController ccf3 = new CourtController();
+		Court courtf3 = new Court();
+		courtf3.setId("F3");
 		int status3 = -1;
-		status3 = ccf3.checkStatus("F3");
+		status3 = ccf3.checkStatus(courtf3);
 		if(status3 == 1) {
 			btnF3.setBackground(Color.RED);
-			btnF3.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-						btnF3.setBackground(colour);
-						try {
-							ccf3.setStatus("0", "F3");
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				});
 		}
 		else if(status3 == 0){
 			btnF3.setBackground(colour);
 			btnF3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 						btnF3.setBackground(highlight);
-						try {
-							ccf3.setStatus("1", "F3");
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						GuiRentDetail frame = new GuiRentDetail(courtf3);
+						frame.setVisible(true);
+						dispose();
 					}
 				});
 		}
-		
-		contentPane.setLayout(null);
-		contentPane.add(btnF1);
-		contentPane.add(btnF2);
-		contentPane.add(btnF3);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -192,7 +131,11 @@ public class FutsalCourt extends JFrame {
 		btnBack.setBackground(Color.GRAY);
 		btnBack.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnBack.setBounds(23, 23, 85, 21);
+		
+		contentPane.setLayout(null);
+		contentPane.add(btnF1);
+		contentPane.add(btnF2);
+		contentPane.add(btnF3);
 		contentPane.add(btnBack);
 	}
-
 }
