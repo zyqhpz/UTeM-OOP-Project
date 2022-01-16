@@ -15,17 +15,19 @@ public class ReceiptController
 	{
 		ArrayList<Receipt> receiptDetails = new ArrayList<Receipt>();
 		
-		//String sql = "SELECT `customer_name`,`court_id`,`hour`,`amount`,`date`,`admin_id` FROM booking WHERE `id`=(SELECT max(`id`) FROM booking);";
+		String sql = "SELECT `customer_name`,`court_id`,`hour`,`amount`,`date` FROM booking WHERE `id`=(SELECT max(`id`) FROM booking);";
 		
-		String sql = "SELECT MAX(booking.customer_name),booking.court_id,booking.hour,booking.amount,booking.date, admin.name FROM booking LEFT OUTER JOIN admin ON booking.admin_id = admin.id";
+		String name = "SELECT admin.name FROM admin INNER JOIN booking ON booking.admin_id=admin.id WHERE booking.id=(SELECT max(id) FROM booking);";
 		
 		Connection conn = MyDatabase.doConnection();
 		
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
+		PreparedStatement preparedStatementName = conn.prepareStatement(name);
 		
 		ResultSet resultSet = preparedStatement.executeQuery();
+		ResultSet resultSetName = preparedStatementName.executeQuery();
 		
-		while(resultSet.next())
+		while(resultSet.next() && resultSetName.next())
 		{
 			Receipt receipt = new Receipt();
 			
@@ -34,7 +36,7 @@ public class ReceiptController
 			receipt.setDuration(resultSet.getInt(3));
 			receipt.setTotalPayment(resultSet.getBigDecimal(4));
 			receipt.setDate(resultSet.getDate(5));
-			receipt.setConfirmedBy(resultSet.getString(6));
+			receipt.setConfirmedBy(resultSetName.getString(1));
 			
 			receiptDetails.add(receipt);
  
@@ -45,4 +47,6 @@ public class ReceiptController
 		
 		return receiptDetails;
 	}
+	
+	
 }
