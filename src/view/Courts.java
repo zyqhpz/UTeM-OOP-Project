@@ -1,5 +1,6 @@
 package view;
 import view.court.*;
+import controller.CourtController;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -10,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -45,15 +47,35 @@ public class Courts extends JFrame {
 		contentPane.setBorder(BorderFactory.createEmptyBorder(325, 80, 325, 80));
 		setContentPane(contentPane);
 		
+		CourtController cc = new CourtController();
+		try {
+			cc.updateStatus();
+		} catch (ClassNotFoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		JButton btnBasketball = new JButton("Basketball");
 		btnBasketball.setBounds(80, 325, 211, 111);
 		btnBasketball.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		btnBasketball.setBackground(colour);
 		btnBasketball.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BasketballCourt frame = new BasketballCourt();
-				frame.setVisible(true);
-				dispose();
+				BasketballCourt frame;
+				try {
+					frame = new BasketballCourt();
+					frame.setVisible(true);
+					dispose();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -63,9 +85,18 @@ public class Courts extends JFrame {
 		btnFutsal.setBackground(colour);
 		btnFutsal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FutsalCourt frame = new FutsalCourt();
-				frame.setVisible(true);
-				dispose();
+				FutsalCourt frame;
+				try {
+					frame = new FutsalCourt();
+					frame.setVisible(true);
+					dispose();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -75,9 +106,18 @@ public class Courts extends JFrame {
 		btnBadminton.setBackground(colour);
 		btnBadminton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BadmintonCourt frame = new BadmintonCourt();
-				frame.setVisible(true);
-				dispose();
+				BadmintonCourt frame;
+				try {
+					frame = new BadmintonCourt();
+					frame.setVisible(true);
+					dispose();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
