@@ -49,6 +49,7 @@ public class BasketballCourt extends JFrame {
 		setSize(900, 800);
 		setTitle("Basketball Court");
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(BorderFactory.createEmptyBorder(80,80,80,80));
 		setContentPane(contentPane);
 		
