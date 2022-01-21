@@ -51,6 +51,7 @@ public class BadmintonCourt extends JFrame {
 		setSize(900, 800);
 		setTitle("Badminton Court");
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(BorderFactory.createEmptyBorder(40,40,40,40));
 		setContentPane(contentPane);
 		
