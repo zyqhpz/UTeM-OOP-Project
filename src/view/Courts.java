@@ -45,6 +45,7 @@ public class Courts extends JFrame {
 		setTitle("Sport Selection");
 		contentPane = new JPanel();
 		contentPane.setBorder(BorderFactory.createEmptyBorder(325, 80, 325, 80));
+		contentPane.setBackground(new Color(255, 235, 205));
 		setContentPane(contentPane);
 		
 		CourtController cc = new CourtController();
