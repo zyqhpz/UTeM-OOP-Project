@@ -14,48 +14,40 @@ import java.util.Date;
 public class CourtController {
 	public int checkStatus(Court court) throws ClassNotFoundException, SQLException {
 		int current_status = -1;
-		String sql = "select status from court where id = ?";
+		String sql = "SELECT status FROM court WHERE id = ?";
 
-		// 1. Connection
 		Connection conn = MyDatabase.doConnection();
 
-		// 2. PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
 		preparedStatement.setString(1, court.getId());
 
-		// 3. View or insert/update
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if (resultSet.next()) {
 			current_status = resultSet.getInt(1);
 		}
 
-		// 4. Must close the connection
 		conn.close();
 
 		return current_status;
 	}
 
 	public void setStatus(String status, Court court) throws ClassNotFoundException, SQLException {
-		String sql = "update court set status = ? where id = ?";
+		String sql = "UPDATE court SET status = ? WHERE id = ?";
 
-		// 1. Connection
 		Connection conn = MyDatabase.doConnection();
 
-		// 2. PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
 		preparedStatement.setString(1, status);
 		preparedStatement.setString(2, court.getId());
 
-		// 3. View or insert/update
 		preparedStatement.executeUpdate();
 
-		// 4. Must close the connection
 		conn.close();
 	}
 
 	public void updateStatus() throws ClassNotFoundException, SQLException {
 		String sql = "SELECT booking.hour, booking.date, booking.court_id FROM booking JOIN court ON booking.court_id = court.id";
-		ArrayList<String> data = new ArrayList<String>();
+		//ArrayList<String> data = new ArrayList<String>();
 
 		Connection conn = MyDatabase.doConnection();
 
@@ -87,26 +79,5 @@ public class CourtController {
 		}
 
 		conn.close();
-	}
-
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		// CourtController cc = new CourtController();
-		// cc.updateStatus();
-		/*
-		 * int status;
-		 * try {
-		 * status = cc.checkStatus("F1");
-		 * System.out.println(status);
-		 * if(status == 0) {
-		 * cc.setStatus(1, "F1");
-		 * }
-		 * else if(status == 1) {
-		 * cc.setStatus(0, "F1");
-		 * }
-		 * } catch (ClassNotFoundException | SQLException e1) {
-		 * // TODO Auto-generated catch block
-		 * e1.printStackTrace();
-		 * }
-		 */
 	}
 }
