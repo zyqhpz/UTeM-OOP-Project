@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -51,8 +52,15 @@ public class Courts extends JFrame {
 		btnBasketball.setBackground(colour);
 		btnBasketball.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BasketballCourt frame = new BasketballCourt();
-				frame.setVisible(true);
+				BasketballCourt frame;
+				try {
+					frame = new BasketballCourt();
+					frame.setVisible(true);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				dispose();
 			}
 		});
@@ -63,8 +71,15 @@ public class Courts extends JFrame {
 		btnFutsal.setBackground(colour);
 		btnFutsal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FutsalCourt frame = new FutsalCourt();
-				frame.setVisible(true);
+				FutsalCourt frame;
+				try {
+					frame = new FutsalCourt();
+					frame.setVisible(true);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				dispose();
 			}
 		});
@@ -75,8 +90,15 @@ public class Courts extends JFrame {
 		btnBadminton.setBackground(colour);
 		btnBadminton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BadmintonCourt frame = new BadmintonCourt();
-				frame.setVisible(true);
+				BadmintonCourt frame;
+				try {
+					frame = new BadmintonCourt();
+					frame.setVisible(true);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				dispose();
 			}
 		});
