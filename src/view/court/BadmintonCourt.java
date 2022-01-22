@@ -295,45 +295,8 @@ public class BadmintonCourt extends JFrame {
 				});
 		}
 		
-		
-		
+	
 		JButton btnA11 = new JButton("A11");
-		btnA11.setBounds(450, 323, 190, 116);
-		btnA11.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		CourtController cca11 = new CourtController();
-		Court courta11 = new Court();
-		courta11.setId("A11");
-		courta11.setSport_id(3);
-			
-		
-		int status11 = -1;
-		status11 = cca11.checkStatus(courta11);
-		if(status11 == 1) {
-			btnA11.setBackground(Color.RED);
-		}
-		//else if(status11 == 0){
-		else {
-			btnA11.setBackground(colour);
-			btnA11.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-						btnA11.setBackground(highlight);
-						GuiRentDetail frame = new GuiRentDetail(courta11);
-						frame.setVisible(true);
-						dispose();
-					}
-				});
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*JButton btnA11 = new JButton("A11");
 		btnA11.setBounds(450, 323, 190, 116);
 		btnA11.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		CourtController cca11 = new CourtController();
@@ -355,7 +318,7 @@ public class BadmintonCourt extends JFrame {
 						dispose();
 					}
 				});
-		}*/
+		}
 		
 		JButton btnA12 = new JButton("A12");
 		btnA12.setBounds(655, 323, 190, 116);
