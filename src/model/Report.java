@@ -7,6 +7,9 @@ public class Report {
 	private int reportType;
 	private ArrayList<Double> data;
 	private String reportName;
+	private int date;
+	private Object month;
+	private String selectedMonth;
 	
 	public int getReportType() {
 		return reportType;
@@ -26,6 +29,22 @@ public class Report {
 	public void setReportName(String reportName) {
 		this.reportName = reportName;
 	}
-	
-	
+	public int getDate() {
+		return date;
+	}
+	public void setDate(int date) {
+		this.date = date;
+	}
+	public Object getMonth() {
+		return month;
+	}
+	public void setMonth(Object month) {
+		this.month = month;
+	}
+	public String getSelectedMonth() {
+		return selectedMonth;
+	}
+	public void setSelectedMonth(String selectedMonth) {
+		this.selectedMonth = selectedMonth;
+	}
 }

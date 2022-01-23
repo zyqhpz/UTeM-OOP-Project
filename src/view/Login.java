@@ -1,29 +1,28 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JPasswordField;
 import java.awt.Color;
-import javax.swing.SwingConstants;
-import javax.swing.DropMode;
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import controller.UserController;
+import model.User;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtSportCentreManagement;
-	private JTextField txtManagementSystem;
-	private JTextField txtId;
-	private JTextField txtPassword;
+	private JTextField textField;
 	private JPasswordField passwordField;
 
 	/**
@@ -49,72 +48,87 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 800);
 		contentPane = new JPanel();
-		contentPane.setForeground(new Color(255, 239, 213));
-		contentPane.setBackground(new Color(255, 235, 205));
+		contentPane.setBackground(new Color(75, 0, 130));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		txtSportCentreManagement = new JTextField();
-		txtSportCentreManagement.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSportCentreManagement.setEditable(false);
-		txtSportCentreManagement.setBackground(new Color(255, 235, 205));
-		txtSportCentreManagement.setFont(new Font("Consolas", Font.ITALIC, 40));
-		txtSportCentreManagement.setText(" Sport Centre \r\n");
-		txtSportCentreManagement.setBounds(238, 100, 459, 64);
-		contentPane.add(txtSportCentreManagement);
-		txtSportCentreManagement.setColumns(10);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(173, 216, 230));
+		panel.setBounds(10, 10, 866, 743);
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
-		txtManagementSystem = new JTextField();
-		txtManagementSystem.setHorizontalAlignment(SwingConstants.CENTER);
-		txtManagementSystem.setEditable(false);
-		txtManagementSystem.setBackground(new Color(255, 235, 205));
-		txtManagementSystem.setText(" Management System\r\n");
-		txtManagementSystem.setFont(new Font("Consolas", Font.ITALIC, 40));
-		txtManagementSystem.setColumns(10);
-		txtManagementSystem.setBounds(238, 163, 459, 64);
-		contentPane.add(txtManagementSystem);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 0, 866, 363);
+		panel.add(panel_1);
+		panel_1.setBackground(new Color(123, 104, 238));
+		panel_1.setLayout(null);
 		
-		txtId = new JTextField();
-		txtId.setHorizontalAlignment(SwingConstants.CENTER);
-		txtId.setEditable(false);
-		txtId.setBackground(new Color(255, 235, 205));
-		txtId.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-		txtId.setText("ID :");
-		txtId.setBounds(178, 393, 130, 45);
-		contentPane.add(txtId);
-		txtId.setColumns(10);
+		JLabel lblNewLabel = new JLabel("SPORT CENTRE \r\n");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		lblNewLabel.setBounds(288, 82, 326, 81);
+		panel_1.add(lblNewLabel);
 		
-		txtPassword = new JTextField();
-		txtPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		txtPassword.setEditable(false);
-		txtPassword.setBackground(new Color(255, 235, 205));
-		txtPassword.setText("Password :");
-		txtPassword.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-		txtPassword.setColumns(10);
-		txtPassword.setBounds(178, 487, 130, 45);
-		contentPane.add(txtPassword);
+		JLabel lblManagementSystem = new JLabel("MANAGEMENT SYSTEM");
+		lblManagementSystem.setForeground(new Color(255, 255, 255));
+		lblManagementSystem.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		lblManagementSystem.setBounds(201, 173, 490, 81);
+		panel_1.add(lblManagementSystem);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainMenu menuFrame = new MainMenu();
-        		menuFrame.setVisible(true);
-        		dispose();
-			}
-		});
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setBackground(new Color(255, 250, 205));
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		btnNewButton.setBounds(346, 593, 179, 45);
-		contentPane.add(btnNewButton);
+		JLabel lblNewLabel_1 = new JLabel("ID :");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		lblNewLabel_1.setBounds(162, 461, 50, 32);
+		panel.add(lblNewLabel_1);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(346, 393, 317, 45);
-		contentPane.add(textArea);
+		JLabel lblNewLabel_1_1 = new JLabel("PASSWORD :");
+		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		lblNewLabel_1_1.setBounds(162, 542, 169, 32);
+		panel.add(lblNewLabel_1_1);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		textField.setBounds(352, 461, 319, 32);
+		panel.add(textField);
+		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(346, 487, 317, 45);
-		contentPane.add(passwordField);
+		passwordField.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		passwordField.setBounds(352, 542, 319, 32);
+		panel.add(passwordField);
+		
+		JButton btnNewButton = new JButton("LOGIN");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String username = textField.getText().trim();
+				String password = new String(passwordField.getPassword()).trim();
+				
+				User user = new User();
+				user.setUsername(username);
+				user.setPassword(password);
+				
+				UserController userController = new UserController();
+				try {
+					String level = userController.doLogin(user);
+					if(level.equals("1"))
+					{
+						new MainMenu().setVisible(true);
+						dispose();
+					}
+					else
+						JOptionPane.showMessageDialog(btnNewButton, "YOU ARE NOT AUTHORIZED !");
+				} catch (ClassNotFoundException | SQLException e1){
+					//to do auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		btnNewButton.setBackground(new Color(204, 204, 255));
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		btnNewButton.setBounds(352, 634, 142, 41);
+		panel.add(btnNewButton);
 	}
 }

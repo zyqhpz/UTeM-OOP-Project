@@ -9,11 +9,10 @@ public class UserController {
 	private User user;
 	public UserController() {}
 	
-	public int doLogin(User user) throws ClassNotFoundException, SQLException
+	public String doLogin(User user) throws ClassNotFoundException, SQLException
 	{
-		int success = -1;
-				
-		String sql = "SELECT * FROM admin WHERE username = ? and password = ?";
+		String level = "";
+		String sql = "SELECT * FROM admin WHERE Id = ? and password = ?";
 		//1. Connection 
 		Connection conn = MyDatabase.doConnection();
 		//2. PreparedStatement
@@ -25,32 +24,31 @@ public class UserController {
 		ResultSet result = preparedStatement.executeQuery();
 		if(result.next())
 		{
-			user.setUsername(user.getUsername());
-			user.setPassword(user.getPassword());
-			user.setId(Integer.parseInt(result.getString(1)));
-			user.setName(result.getString(2));
+			level = result.getString(1);
 		}
-		
-		this.user = user;
-		//int id = user.getId();
 		
 		//Compulsory
 		//4. Must close the connection
 		conn.close();
 		
-		return 1;
+		return level;
 	}
+
 	
 	public static void main(String[] args) {
-		UserController userControl = new UserController();
+		UserController userController = new UserController();
 		
 		User user = new User();
+		user.setId(1);
 		user.setUsername("ellycain");
 		user.setPassword("elly.cain00");
+		user.setName("Elly Cain");
+		user.setLevel("1");
+		
 		
 		try {
-			int success = userControl.doLogin(user);
-			System.out.println("success "+ success);
+			String level = userController.doLogin(user);
+			System.out.println("success with level "+ level);
 		} catch (Exception e) {
 			System.out.println("failed");
 		}
