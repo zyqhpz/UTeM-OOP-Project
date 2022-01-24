@@ -5,6 +5,7 @@ public class User {
 	private String name;
 	private String username;
 	private String password;
+	private String level;
 	
 	public User() {}
 
@@ -38,5 +39,13 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 }

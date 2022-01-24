@@ -1,112 +1,33 @@
 package view;
 import view.report.*;
+import model.Report;
+import controller.ReportController;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.AttributeSet.ColorAttribute;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import java.awt.GridLayout;
 
-public class ReportType extends JFrame {
-
-//	private JPanel contentPane;
-//
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ReportType frame = new ReportType();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-//
-//	/**
-//	 * Create the frame.
-//	 */
-//	public ReportType() {
-//		setTitle("Report Selection");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setBounds(100, 100, 450, 300);
-//		setSize(900, 800);
-//		setBackground(Color.WHITE);
-//		contentPane = new JPanel();
-//		contentPane.setBorder(new EmptyBorder(20, 80, 80, 80));
-//		contentPane.setLayout(new BorderLayout(3, 1));
-//		setContentPane(contentPane);
-//		
-//		JPanel panel = new JPanel();
-//		contentPane.add(panel, BorderLayout.NORTH);
-//		
-//		JLabel labelTitle = new JLabel("Report Selection");
-//		labelTitle.setFont(new Font("Serif", Font.BOLD, 35));
-//		labelTitle.setHorizontalAlignment(SwingConstants.CENTER);
-//		panel.add(labelTitle);
-//		
-//		JPanel panelCenter = new JPanel();
-//		contentPane.add(panelCenter, BorderLayout.CENTER);
-//
-//		
-//		JButton btnSalesMonth = new JButton("Monthly Sales");
-//		btnSalesMonth.setBackground(Color.ORANGE);
-//		btnSalesMonth.setBounds(0, 302, 724, 302);
-//		btnSalesMonth.setFont(new Font("Verdana", Font.PLAIN, 25));
-//		btnSalesMonth.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//			}
-//		});
-//		panelCenter.setLayout(null);
-//		panelCenter.setLayout(new GridLayout(0, 1, 0, 0));
-//		
-//		JButton btnWeeklyReserve = new JButton("Weeekly Reserved Court");
-//		btnWeeklyReserve.setBackground(Color.ORANGE);
-//		btnWeeklyReserve.setBounds(285, 0, 439, 196);
-//		btnWeeklyReserve.setFont(new Font("Verdana", Font.PLAIN, 25));
-//		btnWeeklyReserve.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//			}
-//		});
-//		panelCenter.add(btnWeeklyReserve);
-//		panelCenter.add(btnSalesMonth);
-//		
-//		JButton btnBack = new JButton("Back");
-//		btnBack.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				MainMenu frame = new MainMenu();
-//				frame.setVisible(true);
-//				dispose();
-//			}
-//		});
-//		btnBack.setBackground(Color.GRAY);
-//		btnBack.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-//		btnBack.setBounds(23, 23, 85, 21);
-//		
-////		panel.add(btnBack);
-//		
-//	}
-//
+public class ReportType extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private Color colour = new Color(248, 152, 128);
+//	private ArrayList<String> dateList = new ArrayList<>();
+//	private JComboBox dateDropList = new JComboBox(dateList.toArray());
+	JComboBox date;
 
 	/**
 	 * Launch the application.
@@ -123,6 +44,18 @@ public class ReportType extends JFrame {
 			}
 		});
 	}
+	
+	public ArrayList<String> retrieveDateList() throws ClassNotFoundException, SQLException {
+		ArrayList<String> data = new ArrayList<>();
+		
+		ReportController cc;
+		cc = new ReportController();
+		
+		data = cc.getDateList();
+		
+		return data;
+	}
+	
 
 	/**
 	 * Create the frame.
@@ -140,25 +73,61 @@ public class ReportType extends JFrame {
 		labelTitle.setFont(new Font("Serif", Font.BOLD, 35));
 		labelTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JButton btnSalesMonth = new JButton("Monthly Sales");
-		btnSalesMonth.setBackground(Color.ORANGE);
-		btnSalesMonth.setBounds(275, 300, 350, 115);
-		btnSalesMonth.setFont(new Font("Verdana", Font.PLAIN, 22));
-		btnSalesMonth.addActionListener(new ActionListener() {
+		ArrayList<String> dateList = new ArrayList<>();
+		try {
+			dateList = retrieveDateList();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		JLabel labelDateList = new JLabel("Select Month");
+		labelDateList.setBounds(225, 150, 350, 115);
+		labelDateList.setFont(new Font("Serif", Font.BOLD, 20));
+		
+		date = new JComboBox(dateList.toArray());
+		date.setBounds(360, 195, 100, 30);
+		date.addActionListener(this);
+		
+		Report rep = new Report();
+		
+		JButton btnTotalSale = new JButton("Monthly Total Sales");
+		btnTotalSale.setBackground(Color.ORANGE);
+		btnTotalSale.setBounds(225, 250, 450, 115);
+		btnTotalSale.setFont(new Font("Verdana", Font.PLAIN, 22));
+		btnTotalSale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Report frame = new Report("Monthly Sales");
+				rep.setMonth(date.getSelectedItem());
+				TotalSalesByMonth frame = new TotalSalesByMonth("Monthly Total Sales", "", rep);
 				frame.isVisible();
 				dispose();
 			}
 		});
 		
-		JButton btnWeeklyReserve = new JButton("Weeekly Reservation");
-		btnWeeklyReserve.setBackground(Color.ORANGE);
-		btnWeeklyReserve.setBounds(275, 485, 350, 115);
-		btnWeeklyReserve.setFont(new Font("Verdana", Font.PLAIN, 22));
-		btnWeeklyReserve.addActionListener(new ActionListener() {
+		JButton btnReservePercentage = new JButton("Monthly Reservation Percentage");
+		btnReservePercentage.setBackground(Color.ORANGE);
+		btnReservePercentage.setBounds(225, 400, 450, 115);
+		btnReservePercentage.setFont(new Font("Verdana", Font.PLAIN, 22));
+		btnReservePercentage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReportBarChart frame = new ReportBarChart("Weekly Reservation", "Week");
+				rep.setMonth(date.getSelectedItem());
+				PieChartBySport frame = new PieChartBySport("Monthly Reservation Percentage", rep);
+				frame.isVisible();
+				dispose();
+			}
+		});
+		
+		JButton btnMonthlyReserve = new JButton("Monthly Total Reservation");
+		btnMonthlyReserve.setBackground(Color.ORANGE);
+		btnMonthlyReserve.setBounds(225, 550, 450, 115);
+		btnMonthlyReserve.setFont(new Font("Verdana", Font.PLAIN, 22));
+		btnMonthlyReserve.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rep.setMonth(date.getSelectedItem());
+				TotalReservationByMonth frame = new TotalReservationByMonth("Monthly Total Reservation", "", rep);
 				frame.isVisible();
 				dispose();
 			}
@@ -172,15 +141,27 @@ public class ReportType extends JFrame {
 				dispose();
 			}
 		});
+		
 		btnBack.setBackground(Color.GRAY);
 		btnBack.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnBack.setBounds(23, 23, 85, 21);
+		
 		contentPane.add(btnBack);
 		
+		contentPane.add(date);
+		
 		contentPane.add(labelTitle);
+		contentPane.add(labelDateList);
 		
 		contentPane.setLayout(null);
-		contentPane.add(btnSalesMonth);
-		contentPane.add(btnWeeklyReserve);
+		contentPane.add(btnTotalSale);
+		contentPane.add(btnReservePercentage);
+		contentPane.add(btnMonthlyReserve);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
