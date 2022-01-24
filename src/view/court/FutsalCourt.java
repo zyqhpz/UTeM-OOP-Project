@@ -58,6 +58,7 @@ public class FutsalCourt extends JFrame {
 		CourtController ccf1 = new CourtController();
 		Court courtf1 = new Court();
 		courtf1.setId("F1");
+		courtf1.setSport_id(1);
 		int status = -1;
 		status = ccf1.checkStatus(courtf1);
 		if(status == 1) {
@@ -81,6 +82,7 @@ public class FutsalCourt extends JFrame {
 		CourtController ccf2 = new CourtController();
 		Court courtf2 = new Court();
 		courtf2.setId("F2");
+		courtf2.setSport_id(1);
 		int status2 = -1;
 		status2 = ccf2.checkStatus(courtf2);
 		if(status2 == 1) {
@@ -104,6 +106,7 @@ public class FutsalCourt extends JFrame {
 		CourtController ccf3 = new CourtController();
 		Court courtf3 = new Court();
 		courtf3.setId("F3");
+		courtf3.setSport_id(1);
 		int status3 = -1;
 		status3 = ccf3.checkStatus(courtf3);
 		if(status3 == 1) {

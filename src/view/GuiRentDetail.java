@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import controller.CourtController;
 import model.Court;
+import model.RentDetail;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -18,11 +20,22 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
 
-public class GuiRentDetail extends JFrame {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+import view.Receipt;
+import controller.RentDetailController;
+
+public class GuiRentDetail extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -53,6 +66,10 @@ public class GuiRentDetail extends JFrame {
 	public GuiRentDetail() {}
 	
 	public GuiRentDetail(Court court) {
+		
+		RentDetailController rentDetailController = new RentDetailController();
+		RentDetail rentDetail = new RentDetail();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 801);
 		contentPane = new JPanel();
@@ -64,17 +81,45 @@ public class GuiRentDetail extends JFrame {
 		textField = new JTextField();
 		textField.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("Cancel");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Courts frame = new Courts();
-				frame.setVisible(true);
-				dispose();
-			}
-		});
+		String cashierName = "";
+		try {
+			cashierName = rentDetailController.viewNameQuery();
+		} catch (ClassNotFoundException | SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		
-		JLabel lblNewLabel = new JLabel("< Cashier Name >");
+		double rate = 0;
+		try {
+			rate = rentDetailController.viewRateQuery(court);
+		} catch (ClassNotFoundException | SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
+		// Get ratePerHour
+		// String ratePerHour = Double.toString(rate); 
+		String ratePerHour = "Yahh";
+		
+		
+		
+		if(court.getSport_id() == 1)
+		{
+			ratePerHour = "100.00";  // Futsal
+		}
+		else if(court.getSport_id() == 2)
+		{
+			ratePerHour = "75.00";  // Basketball
+		}
+		else if(court.getSport_id() == 3)
+		{
+			ratePerHour = "60.00";  // Badminton
+		}
+			
+		
+		
+		
+		JLabel lblNewLabel = new JLabel(cashierName);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
 		JLabel lblNewLabel_1 = new JLabel("Customer name:");
@@ -92,7 +137,7 @@ public class GuiRentDetail extends JFrame {
 		JLabel lblNewLabel_2_1 = new JLabel(court.getId());
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
-		JLabel lblNewLabel_2_1_1_1 = new JLabel("duration x rate/hour = RM");
+		JLabel lblNewLabel_2_1_1_1 = new JLabel("duration x " + ratePerHour + " = RM");
 		lblNewLabel_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
 		textField_1 = new JTextField();
@@ -101,12 +146,35 @@ public class GuiRentDetail extends JFrame {
 		JLabel lblNewLabel_2_1_2 = new JLabel("hour(s)");
 		lblNewLabel_2_1_2.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
+		
+		
+		JButton btnNewButton_1 = new JButton("Cancel");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Courts frame = new Courts();
+				frame.setVisible(true);
+				dispose();
+			}
+		});
+		
 		JButton btnNewButton_1_1 = new JButton("Confirm");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CourtController cc = new CourtController();
+				
 				try {
+					// Get input data from text area
+					rentDetail.setCustomerName(textField.getText());
+					rentDetail.setHour(Integer.valueOf(textField_1.getText()));
+					
+					
 					cc.setStatus("1", court);
+					rentDetailController.insertQuery(rentDetail, court);
+					
+					ReceiptGui frame = new ReceiptGui();
+					frame.setVisible(true);
+					dispose();
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
