@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-import view.Receipt;
+import view.ReceiptGui;
 import controller.RentDetailController;
 
 public class GuiRentDetail extends JFrame{
@@ -168,9 +168,8 @@ public class GuiRentDetail extends JFrame{
 					rentDetail.setCustomerName(textField.getText());
 					rentDetail.setHour(Integer.valueOf(textField_1.getText()));
 					
-					
-					cc.setStatus("1", court);
 					rentDetailController.insertQuery(rentDetail, court);
+					cc.setStatus(1, court);
 					
 					ReceiptGui frame = new ReceiptGui();
 					frame.setVisible(true);

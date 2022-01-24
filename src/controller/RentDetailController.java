@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import database.MyDatabase;
 import model.Court;
 import model.RentDetail;
+import controller.CourtController;
 
 public class RentDetailController {
 	public String viewNameQuery() throws ClassNotFoundException, SQLException 
@@ -83,12 +84,16 @@ public class RentDetailController {
 		Connection conn = MyDatabase.doConnection();
 		
 		// Insert Statement
-		String sql = "insert booking (customer_name, hour, amount, date, court_id, admin_id) values (?,?,?,?,?,?)";
+		String sql = "insert booking (customer_name, hour, amount, court_id, admin_id) values (?,?,?,?,?)";
+//		String sqlu = "UPDATE SET status = 1 FROM court WHERE id = " + court.getId();
+//		
+//		PreparedStatement updateStatus = conn.prepareStatement(sql); 
+		
+//		int up = preparedStatement.executeUpdate();
 		
 		// Timestamp
 		//final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		
+//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());	
 		
 		// Get total amount of payment by calculation
 		double ratePerHour = 0;
@@ -113,9 +118,9 @@ public class RentDetailController {
 		preparedStatement.setString(1, rentDetail.getCustomerName()); 
 		preparedStatement.setInt(2, rentDetail.getHour()); 
 		preparedStatement.setDouble(3, amount); 
-		preparedStatement.setTimestamp(4, timestamp); 
-		preparedStatement.setString(5, court.getId()); 
-		preparedStatement.setInt(6, 1); 
+//		preparedStatement.setTimestamp(4, timestamp); 
+		preparedStatement.setString(4, court.getId()); 
+		preparedStatement.setInt(5, 1); 
 		
 		success = preparedStatement.executeUpdate();
 		conn.close();

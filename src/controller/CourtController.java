@@ -31,13 +31,13 @@ public class CourtController {
 		return current_status;
 	}
 
-	public void setStatus(String status, Court court) throws ClassNotFoundException, SQLException {
+	public void setStatus(int status, Court court) throws ClassNotFoundException, SQLException {
 		String sql = "UPDATE court SET status = ? WHERE id = ?";
 
 		Connection conn = MyDatabase.doConnection();
 
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
-		preparedStatement.setString(1, status);
+		preparedStatement.setInt(1, status);
 		preparedStatement.setString(2, court.getId());
 
 		preparedStatement.executeUpdate();

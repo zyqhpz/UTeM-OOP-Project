@@ -2,13 +2,14 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.*;
 
-
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 
 import java.sql.*;
 
@@ -56,6 +57,19 @@ public class ReceiptGui extends JFrame {
 		textArea.setEditable(false);
 		textArea.setBounds(10, 10, 866, 743);
 		contentPane.add(textArea, BorderLayout.CENTER);
+		
+		JButton btnBack = new JButton("Okay");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainMenu frame = new MainMenu();
+				frame.setVisible(true);
+				dispose();
+			}
+		});
+		btnBack.setBackground(Color.GRAY);
+		btnBack.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnBack.setBounds(700, 700, 85, 30);
+		contentPane.add(btnBack);
 		
 		ReceiptController receiptController = new ReceiptController();
 		try 

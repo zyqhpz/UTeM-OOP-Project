@@ -1,3 +1,4 @@
+
 package view.court;
 import view.Courts;
 import view.GuiRentDetail;
@@ -571,5 +572,4 @@ public class BadmintonCourt extends JFrame {
 		btnBack.setBounds(20, 10, 85, 21);
 		contentPane.add(btnBack);
 	}
-
 }
