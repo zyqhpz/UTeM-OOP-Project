@@ -62,6 +62,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca1 = new CourtController();
 		Court courta1 = new Court();
 		courta1.setId("A1");
+		courta1.setSport_id(3);
 		int status = -1;
 		status = cca1.checkStatus(courta1);
 		if(status == 1) {
@@ -85,6 +86,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca2 = new CourtController();
 		Court courta2 = new Court();
 		courta2.setId("A2");
+		courta2.setSport_id(3);
 		int status2 = -1;
 		status2 = cca2.checkStatus(courta2);
 		if(status2 == 1) {
@@ -108,6 +110,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca3 = new CourtController();
 		Court courta3 = new Court();
 		courta3.setId("A3");
+		courta3.setSport_id(3);
 		int status3 = -1;
 		status3 = cca3.checkStatus(courta3);
 		if(status3 == 1) {
@@ -131,6 +134,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca4 = new CourtController();
 		Court courta4 = new Court();
 		courta4.setId("A4");
+		courta4.setSport_id(3);
 		int status4 = -1;
 		status4 = cca4.checkStatus(courta4);
 		if(status4 == 1) {
@@ -154,6 +158,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca5 = new CourtController();
 		Court courta5 = new Court();
 		courta5.setId("A5");
+		courta5.setSport_id(3);
 		int status5 = -1;
 		status5 = cca5.checkStatus(courta5);
 		if(status5 == 1) {
@@ -177,6 +182,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca6 = new CourtController();
 		Court courta6 = new Court();
 		courta6.setId("A6");
+		courta6.setSport_id(3);
 		int status6 = -1;
 		status6 = cca6.checkStatus(courta6);
 		if(status6 == 1) {
@@ -200,6 +206,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca7 = new CourtController();
 		Court courta7 = new Court();
 		courta7.setId("A7");
+		courta7.setSport_id(3);
 		int status7 = -1;
 		status7 = cca7.checkStatus(courta7);
 		if(status7 == 1) {
@@ -223,6 +230,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca8 = new CourtController();
 		Court courta8 = new Court();
 		courta8.setId("A8");
+		courta8.setSport_id(3);
 		int status8 = -1;
 		status8 = cca8.checkStatus(courta8);
 		if(status8 == 1) {
@@ -246,6 +254,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca9 = new CourtController();
 		Court courta9 = new Court();
 		courta9.setId("A9");
+		courta9.setSport_id(3);
 		int status9 = -1;
 		status9 = cca9.checkStatus(courta9);
 		if(status9 == 1) {
@@ -269,6 +278,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca10 = new CourtController();
 		Court courta10 = new Court();
 		courta10.setId("A10");
+		courta10.setSport_id(3);
 		int status10 = -1;
 		status10 = cca10.checkStatus(courta10);
 		if(status10 == 1) {
@@ -292,6 +302,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca11 = new CourtController();
 		Court courta11 = new Court();
 		courta11.setId("A11");
+		courta11.setSport_id(3);
 		int status11 = -1;
 		status11 = cca11.checkStatus(courta11);
 		if(status11 == 1) {
@@ -315,6 +326,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca12 = new CourtController();
 		Court courta12 = new Court();
 		courta12.setId("A12");
+		courta12.setSport_id(3);
 		int status12 = -1;
 		status12 = cca12.checkStatus(courta12);
 		if(status12 == 1) {
@@ -338,6 +350,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca13 = new CourtController();
 		Court courta13 = new Court();
 		courta13.setId("A13");
+		courta13.setSport_id(3);
 		int status13 = -1;
 		status13 = cca13.checkStatus(courta13);
 		if(status13 == 1) {
@@ -361,6 +374,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca14 = new CourtController();
 		Court courta14 = new Court();
 		courta14.setId("A14");
+		courta14.setSport_id(3);
 		int status14 = -1;
 		status14 = cca14.checkStatus(courta14);
 		if(status14 == 1) {
@@ -384,6 +398,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca15 = new CourtController();
 		Court courta15 = new Court();
 		courta15.setId("A15");
+		courta15.setSport_id(3);
 		int status15 = -1;
 		status15 = cca15.checkStatus(courta15);
 		if(status15 == 1) {
@@ -407,6 +422,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca16 = new CourtController();
 		Court courta16 = new Court();
 		courta16.setId("A16");
+		courta16.setSport_id(3);
 		int status16 = -1;
 		status16 = cca16.checkStatus(courta16);
 		if(status16 == 1) {
@@ -430,6 +446,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca17 = new CourtController();
 		Court courta17 = new Court();
 		courta17.setId("A17");
+		courta17.setSport_id(3);
 		int status17 = -1;
 		status17 = cca17.checkStatus(courta17);
 		if(status17 == 1) {
@@ -453,6 +470,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca18 = new CourtController();
 		Court courta18 = new Court();
 		courta18.setId("A18");
+		courta18.setSport_id(3);
 		int status18 = -1;
 		status18 = cca18.checkStatus(courta18);
 		if(status18 == 1) {
@@ -476,6 +494,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca19 = new CourtController();
 		Court courta19 = new Court();
 		courta19.setId("A19");
+		courta19.setSport_id(3);
 		int status19 = -1;
 		status19 = cca19.checkStatus(courta19);
 		if(status19 == 1) {
@@ -499,6 +518,7 @@ public class BadmintonCourt extends JFrame {
 		CourtController cca20 = new CourtController();
 		Court courta20 = new Court();
 		courta20.setId("A20");
+		courta20.setSport_id(3);
 		int status20 = -1;
 		status20 = cca20.checkStatus(courta20);
 		if(status20 == 1) {

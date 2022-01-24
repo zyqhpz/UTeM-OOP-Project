@@ -59,6 +59,7 @@ public class BasketballCourt extends JFrame {
 		CourtController ccb1 = new CourtController();
 		Court courtb1 = new Court();
 		courtb1.setId("B1");
+		courtb1.setSport_id(2);
 		int status = -1;
 		status = ccb1.checkStatus(courtb1);
 		if(status == 1) {
@@ -82,6 +83,7 @@ public class BasketballCourt extends JFrame {
 		CourtController ccb2 = new CourtController();
 		Court courtb2 = new Court();
 		courtb2.setId("B2");
+		courtb2.setSport_id(2);
 		int status2 = -1;
 		status2 = ccb2.checkStatus(courtb2);
 		if(status2 == 1) {
